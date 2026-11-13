@@ -7,7 +7,8 @@
   "scripts": {
     "check": "node src/cli.js check",
     "scan": "node src/cli.js scan",
-    "update": "node src/cli.js update"
+    "update": "node src/cli.js update",
+    "overlay": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\\overlay\\Start-CopilotZhOverlay.ps1"
   },
   "engines": {
     "node": ">=18"
