@@ -1,22 +1,22 @@
-# Copilot Desktop 涓枃鍖栬祫婧?
+# Copilot Desktop 中文化资源
 
-杩欐槸涓€涓?*鐙珛鐨勩€侀潪渚靛叆寮?*涓枃鍖栬祫婧愰」鐩紝鐢ㄤ簬缁存姢 GitHub Copilot Desktop 鐨勭増鏈寲缈昏瘧鏄犲皠锛屽苟鍦ㄦ柊鐗堟湰鍙戝竷鍚庤嚜鍔ㄥ彂鐜版柊澧炵晫闈㈡枃鏈€?
+这是一个**独立的、非侵入式**中文化资源项目，用于维护 GitHub Copilot Desktop 的版本化翻译映射，并在新版本发布后自动发现新增界面文本。
 
-鏈」鐩笉浼氫慨鏀广€侀噸鎵撳寘鎴栫粫杩?GitHub Copilot Desktop 鐨勪唬鐮佺鍚嶅拰鑷姩鏇存柊鏈哄埗銆傚彧鏈夊湪瀹樻柟鎻愪緵鍙姞杞界殑璇█璧勬簮鎺ュ彛锛屾垨鐢ㄦ埛鏄庣‘浣跨敤鍏煎鐨勫閮ㄨ鐩栧眰鏃讹紝缈昏瘧璧勬簮鎵嶈兘琚疄闄呭姞杞藉埌瀹㈡埛绔€?
+本项目不会修改、重打包或绕过 GitHub Copilot Desktop 的代码签名和自动更新机制。只有在官方提供可加载的语言资源接口，或用户明确使用兼容的外部覆盖层时，翻译资源才能被实际加载到客户端。
 
-## 褰撳墠鍔熻兘
+## 当前功能
 
-- 缁存姢鎸夌増鏈粍缁囩殑鑻辨枃閿笌绠€浣撲腑鏂囩炕璇戙€?
-- 浠庢湰鍦板鍑虹殑 Desktop 璧勬簮鏂囦欢涓壂鎻忚嫳鏂囨枃鏈€?
-- 瀵圭収缈昏瘧鏄犲皠锛屾姤鍛婄己澶辩炕璇戙€?
-- 鏌ヨ GitHub Releases锛屾娴嬩笂娓哥増鏈彉鍖栥€?
-- GitHub Actions 瀹氭湡妫€鏌ユ渶鏂扮増鏈苟鐢熸垚寰呯炕璇戞竻鍗曘€?
+- 维护按版本组织的英文键与简体中文翻译。
+- 从本地导出的 Desktop 资源文件中扫描英文文本。
+- 对照翻译映射，报告缺失翻译。
+- 查询 GitHub Releases，检测上游版本变化。
+- GitHub Actions 定期检查最新版本并生成待翻译清单。
 
-鐢变簬 Copilot Desktop 鐨勫畼鏂瑰彂甯冨厓鏁版嵁鍦板潃涓嶅湪鏈」鐩腑鍏紑澹版槑锛屾洿鏂板櫒瑕佹眰閫氳繃
-`COPILOT_RELEASES_URL` 鏄惧紡閰嶇疆鍙俊鐨勭増鏈厓鏁版嵁鎺ュ彛銆傛帴鍙ｅ簲杩斿洖鍖呭惈 `tag_name`
-鎴?`name` 瀛楁鐨?JSON锛屽苟鍙€夎繑鍥?`html_url`銆?
+由于 Copilot Desktop 的官方发布元数据地址不在本项目中公开声明，更新器要求通过
+`COPILOT_RELEASES_URL` 显式配置可信的版本元数据接口。接口应返回包含 `tag_name`
+或 `name` 字段的 JSON，并可选返回 `html_url`。
 
-## 浣跨敤
+## 使用
 
 ```powershell
 npm run check
@@ -25,11 +25,11 @@ $env:COPILOT_RELEASES_URL = "https://example.invalid/releases/latest"
 npm run update
 ```
 
-`scan` 鎺ュ彈 JSON銆丣avaScript銆丠TML 鎴栫函鏂囨湰璧勬簮鏂囦欢銆傚畠鍙敓鎴愭姤鍛婏紝涓嶄細淇敼杈撳叆鏂囦欢銆?
+`scan` 接受 JSON、JavaScript、HTML 或纯文本资源文件。它只生成报告，不会修改输入文件。
 
-## 璧勬簮鏍煎紡
+## 资源格式
 
-缈昏瘧璧勬簮浣嶄簬 `locales\zh-CN.json`锛屾牸寮忓涓嬶細
+翻译资源位于 `locales\zh-CN.json`，格式如下：
 
 ```json
 {
@@ -39,11 +39,11 @@ npm run update
     "upstreamVersion": "latest"
   },
   "messages": {
-    "Settings": "璁剧疆"
+    "Settings": "设置"
   }
 }
 ```
 
-## 鍚堣璇存槑
+## 合规说明
 
-璇烽伒瀹?GitHub Copilot Desktop 鐨勮鍙€佸晢鏍囧拰鏈嶅姟鏉℃銆備笉瑕佸垎鍙戜慨鏀瑰悗鐨勫畼鏂瑰畨瑁呭寘锛屼篃涓嶈缁曡繃绛惧悕楠岃瘉鎴栬嚜鍔ㄦ洿鏂颁繚鎶ゃ€?
+请遵守 GitHub Copilot Desktop 的许可、商标和服务条款。不要分发修改后的官方安装包，也不要绕过签名验证或自动更新保护。
