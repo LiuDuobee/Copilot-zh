@@ -11,7 +11,7 @@ Add-Type -AssemblyName UIAutomationTypes
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
-Add-Type @"
+Add-Type -TypeDefinition @"
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -24,7 +24,7 @@ public sealed class OverlayLabel {
 }
 
 public sealed class CopilotOverlayForm : Form {
-    public List<OverlayLabel> Labels { get; } = new List<OverlayLabel>();
+    public List<OverlayLabel> Labels;
     private const int WS_EX_TRANSPARENT = 0x20;
     private const int WS_EX_TOOLWINDOW = 0x80;
     private const int WS_EX_NOACTIVATE = 0x8000000;
@@ -37,6 +37,7 @@ public sealed class CopilotOverlayForm : Form {
         TransparencyKey = Color.Magenta;
         DoubleBuffered = true;
         StartPosition = FormStartPosition.Manual;
+        Labels = new List<OverlayLabel>();
     }
 
     protected override CreateParams CreateParams {
@@ -114,7 +115,10 @@ public static class WindowLocator {
         return Rectangle.FromLTRB(rect.Left, rect.Top, rect.Right, rect.Bottom);
     }
 }
-"@
+"@ -ReferencedAssemblies @(
+  ([System.Windows.Forms.Form].Assembly.Location),
+  ([System.Drawing.Rectangle].Assembly.Location)
+)
 
 $localePath = Join-Path $PSScriptRoot "..\locales\zh-CN.json"
 if (-not (Test-Path -LiteralPath $localePath)) {
