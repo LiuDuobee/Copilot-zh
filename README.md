@@ -27,6 +27,23 @@ npm run update
 
 `scan` 接受 JSON、JavaScript、HTML 或纯文本资源文件。它只生成报告，不会修改输入文件。
 
+## Windows UI Automation 覆盖层
+
+覆盖层会读取 Copilot Desktop 的 Windows UI Automation 文本，在原位置绘制简体中文，不修改官方安装目录。先启动 Copilot Desktop，再运行：
+
+```powershell
+npm run overlay
+```
+
+如果窗口标题不包含 `Copilot`，可指定标题关键词：
+
+```powershell
+$env:COPILOT_WINDOW_TITLE = "GitHub Copilot"
+npm run overlay
+```
+
+覆盖层只会替换 `locales\zh-CN.json` 中已存在的文本；关闭覆盖层窗口即可停止。由于 Desktop 的部分界面可能不是 UI Automation 可访问控件，未出现在覆盖层中的文本需要继续补充适配。
+
 ## 资源格式
 
 翻译资源位于 `locales\zh-CN.json`，格式如下：
