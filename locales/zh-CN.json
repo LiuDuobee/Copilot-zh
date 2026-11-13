@@ -6,20 +6,20 @@
     "updatedAt": "2026-11-13"
   },
   "messages": {
-    "Settings": "璁剧疆",
-    "General": "甯歌",
-    "Appearance": "澶栬",
-    "Notifications": "閫氱煡",
-    "Privacy": "闅愮",
-    "Account": "璐︽埛",
-    "Sign in": "鐧诲綍",
-    "Sign out": "閫€鍑虹櫥褰?,
-    "Save": "淇濆瓨",
-    "Cancel": "鍙栨秷",
-    "Close": "鍏抽棴",
-    "Update": "鏇存柊",
-    "Check for updates": "妫€鏌ユ洿鏂?,
-    "About": "鍏充簬",
-    "Help": "甯姪"
+    "Settings": "设置",
+    "General": "常规",
+    "Appearance": "外观",
+    "Notifications": "通知",
+    "Privacy": "隐私",
+    "Account": "账户",
+    "Sign in": "登录",
+    "Sign out": "退出登录",
+    "Save": "保存",
+    "Cancel": "取消",
+    "Close": "关闭",
+    "Update": "更新",
+    "Check for updates": "检查更新",
+    "About": "关于",
+    "Help": "帮助"
   }
 }
