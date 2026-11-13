@@ -1,0 +1,36 @@
+name: Check Copilot Desktop release
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Check latest release
+        if: ${{ vars.COPILOT_RELEASES_URL != '' }}
+        env:
+          COPILOT_RELEASES_URL: ${{ vars.COPILOT_RELEASES_URL }}
+        run: npm run update
+      - name: Validate translations
+        run: npm run check
+      - name: Commit version metadata
+        run: |
+          if git diff --quiet; then
+            echo "No upstream release change."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add locales/zh-CN.json
+          git commit -m "chore: track latest Copilot Desktop release"
+          git push
